@@ -10,6 +10,7 @@ def open_console(port='COM7', baudrate=9600):
     else:
         return False
 
+
 def run_command(console, cmd='\n', sleep=2):
     print('Sending command: ' + cmd)
     console.write(cmd.encode() + b'\n')
@@ -34,4 +35,3 @@ def check_initial_configuration(console):
         return True
     else:
         return False
-
