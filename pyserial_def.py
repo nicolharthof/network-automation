@@ -3,8 +3,8 @@ import time
 
 
 
-def open_console(port='COM5', baudrate=9600):
-    console = serial.Serial(port='COM5', baudrate=9600, parity='N', stopbits=1, bytesize=8, timeout=8)
+def open_console(port='COM7', baudrate=9600):
+    console = serial.Serial(port='COM7', baudrate=9600, parity='N', stopbits=1, bytesize=8, timeout=8)
     if console.isOpen():
         return console
     else:
@@ -15,6 +15,7 @@ def run_command(console, cmd='\n', sleep=2):
     console.write(cmd.encode() + b'\n')
     time.sleep(sleep)
 
+
 def read_from_console(console):
     bytes_to_be_read = console.inWaiting()
     if bytes_to_be_read:
@@ -23,7 +24,7 @@ def read_from_console(console):
     else:
         return False
 
-
+#rozpoczęcie konfiguracji routera
 def check_initial_configuration(console):
     run_command(console, '\n')
     prompt = read_from_console(console)
@@ -34,8 +35,3 @@ def check_initial_configuration(console):
     else:
         return False
 
-#con = open_console()
-#run_command(con)
-#run_command(con, 'sh version')
-#output = read_from_console(con)
-#print(output)
